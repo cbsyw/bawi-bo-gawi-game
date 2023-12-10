@@ -20,12 +20,12 @@
 
 
 
-function getRandomAnswer() {
+function getComputerChoice() {
 
     let randomNumber = Math.floor(Math.random() * (4-1) + 1);
-    let rock = ("Rock!")
-    let paper = ("Paper!")
-    let scissors = ("Scissors!")
+    let rock = ("rock")
+    let paper = ("paper")
+    let scissors = ("scissors")
 
     if (randomNumber === 3){
         return paper;
@@ -39,3 +39,40 @@ function getRandomAnswer() {
 
 
 }
+
+
+
+
+function playRound (playerSelection,computerSelection){
+
+    let rock = ("rock")
+    let paper = ("paper")
+    let scissors = ("scissors")
+    let userText = prompt("Choose your weapon");
+    playerSelection = userText.toLowerCase();
+    let playerVictoryText = playerSelection.charAt(0).toUpperCase()+ playerSelection.slice(1)
+    let compVictoryText = computerSelection.charAt(0).toUpperCase()+ computerSelection.slice(1)
+
+    if (playerSelection === computerSelection){
+        return ("Tie! Play Again");
+    }
+    else if (playerSelection === scissors && computerSelection === paper
+        || playerSelection === paper && computerSelection === rock
+        || playerSelection === rock && computerSelection === scissors){
+        return ("You Win! " +  playerVictoryText + " beats " + compVictoryText + "!")
+    }
+    else if (computerSelection === scissors && playerSelection === paper
+        || computerSelection === paper && playerSelection === rock
+        || computerSelection === rock && playerSelection === scissors){
+            return ("You Lose! " +  compVictoryText + " beats " + playerVictoryText + "!")
+        }
+    else{
+        return ("cancelled");
+    }
+
+}
+
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+
+console.log(playRound(playerSelection,computerSelection))
