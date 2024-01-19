@@ -1,137 +1,213 @@
+// Function to Play Game
+let playerScore = 0;
+let computerScore = 0;
+let roundWin = ''
+
+function playRound(playerSelection, computerSelection) {
 
 
-//console.log("hello world")
+    if (playerSelection === computerSelection) {
+        roundWin = 'tie'
+    }
+    if (playerSelection === 'scissors' && computerSelection === 'paper' ||
+        playerSelection === 'paper' && computerSelection === 'rock' ||
+        playerSelection === 'rock' && computerSelection === 'scissors') {
+
+        playerScore++;
+        roundWin = 'player'
+    }
+    if (computerSelection === 'scissors' && playerSelection === 'paper' ||
+        computerSelection === 'paper' && playerSelection === 'rock' ||
+        computerSelection === 'rock' && playerSelection === 'scissors') {
+
+        computerScore++;
+        roundWin = 'computer'
+    }
+
+    updScrMsg(roundWin, playerSelection, computerSelection)
+
+}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+}
 
 
-//create a function containing the following 
-//create a variable - randomNumber
-//create a variable - rock 
-//create a variable - paper
-//create a variable - scissors 
-//set randomAnswer equal to a random number generator from 1-3
-//set the random number generator 
-//if random answer = 1 return rock ("rock")
-//if random answer = 2 return paper
-//if random answer = 0 return scissors 
+function finalMessage() {
+    if (playerScore > computerScore) {
+        endMessage.textContent = 'You won!';
+        endMessage.style.color = ' #32CD32 ';
+    } else {
+        endMessage.textContent = 'You lost...';
+        endMessage.style.color = '#EE4B2B';
+    }
+}
 
-//console.log (function)
+function reset() {
+    playerScore = 0
+    computerScore = 0
+    scoreInfo.textContent = 'Rock, Paper, Scissors, Shoot!'
+    scoreMessage.textContent = 'Best of 5!'
+    userScoreP.textContent = 'Player: 0'
+    computerScoreP.textContent = 'Computer: 0'
+    userInput.textContent = ''
+    compInput.textContent = ''
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}
 
+// Function for Computer Choice
 
-
-
+const computerSelection = getComputerChoice();
 
 function getComputerChoice() {
 
-    let randomNumber = Math.floor(Math.random() * (4-1) + 1);
+    let randomNumber = Math.floor(Math.random() * (4 - 1) + 1);
     let rock = ("rock");
     let paper = ("paper");
     let scissors = ("scissors");
 
-    if (randomNumber === 3){
+    if (randomNumber === 3) {
         return paper;
-    }
-    else if (randomNumber === 2) {
+    } else if (randomNumber === 2) {
         return scissors;
-    }
-    else if (randomNumber === 1) {
+    } else if (randomNumber === 1) {
         return rock;
     }
 }
 
-
-
-
-function playRound (playerSelection,computerSelection){
-
-    let rock = ("rock");
-    let paper = ("paper");
-    let scissors = ("scissors");
-    let userText = prompt("Choose your weapon");
-    computerSelection = getComputerChoice();
-    playerSelection = userText.toLowerCase();
-    let playerVictoryText = playerSelection.charAt(0).toUpperCase()+ playerSelection.slice(1)
-    let compVictoryText = computerSelection.charAt(0).toUpperCase()+ computerSelection.slice(1)
-
-    if (playerSelection === computerSelection){
-        return ("Tie! Play Again");
-    }
-    else if (playerSelection === scissors && computerSelection === paper
-        || playerSelection === paper && computerSelection === rock
-        || playerSelection === rock && computerSelection === scissors){
-        return ("You Win! " +  playerVictoryText + " beats " + compVictoryText + "!") 
-    }
-    else if (computerSelection === scissors && playerSelection === paper
-        || computerSelection === paper && playerSelection === rock
-        || computerSelection === rock && playerSelection === scissors){
-            return ("You Lose! " +  compVictoryText + " beats " + playerVictoryText + "!") 
-        }
-    else{
-        return ("Cancelled!");
-    }
+function isGameOver() {
+    return playerScore === 3 || computerScore === 3
 }
 
-let playerSelection = "rock";
-const computerSelection = getComputerChoice();
+const rockButton = document.getElementById('rock')
+const paperButton = document.getElementById('paper')
+const scissorsButton = document.getElementById('scissors')
+const userInput = document.getElementById('userInput')
+const compInput = document.getElementById('compInput')
+
+
+const userScoreP = document.getElementById('userScore')
+const computerScoreP = document.getElementById('computerScore')
+
+const scoreInfo = document.getElementById('scoreInfo')
+const scoreMessage = document.getElementById('scoreMessage')
+
+// 
+const modal = document.getElementById('modal')
+const endMessage = document.getElementById('endMessage')
+const overlay = document.getElementById('overlay')
+const restartButton = document.getElementById('restartButton')
+
+// 
 
 
 
-function game(){
+rockButton.addEventListener('click', () => inputClick('rock'))
+paperButton.addEventListener('click', () => inputClick('paper'))
+scissorsButton.addEventListener('click', () => inputClick('scissors'))
 
-    let playerScore = 0;
-    let compScore = 0;
+// 
+restartButton.addEventListener('click', reset)
+overlay.addEventListener('click', closeModal)
+    // 
 
-    for (let i =1; i < 6; i++){
 
-        let roundResult = (playRound(playerSelection,computerSelection))
-        console.log(roundResult);
 
-            if ((roundResult === "You Win! Rock beats Scissors!")
-            || (roundResult === "You Win! Scissors beats Paper!")
-            || (roundResult === "You Win! Paper beats Rock!")){
-            ++playerScore;}
+function inputClick(playerSelection) {
 
-            else if ((roundResult === "You Lose! Rock beats Scissors!")
-            || (roundResult === "You Lose! Paper beats Rock!")
-            || (roundResult === "You Lose! Scissors beats Paper!")){
-            ++compScore;}
-
-            else{
-                let roundResult = (playRound(playerSelection,computerSelection))
-                console.log(roundResult);
-
-                if ((roundResult === "You Win! Rock beats Scissors!")
-                || (roundResult === "You Win! Scissors beats Paper!")
-                || (roundResult === "You Win! Paper beats Rock!")){
-                ++playerScore;}
-
-                else if ((roundResult === "You Lose! Rock beats Scissors!")
-                || (roundResult === "You Lose! Paper beats Rock!")
-                || (roundResult === "You Lose! Scissors beats Paper!")){
-                ++compScore;}}
-                        
+    if (isGameOver()) {
+        openModal()
     }
 
+    const computerSelection = getComputerChoice()
+    playRound(playerSelection, computerSelection)
+    updateChoices(playerSelection, computerSelection)
+    updateScore()
 
-    console.log("PSCORE: " + playerScore)
-    console.log("CSCORE: " + compScore)
+    if (isGameOver())
+        openModal()
+    finalMessage()
+}
+
+
+function openModal() {
+    modal.classList.add('active')
+    overlay.classList.add('active')
+}
+
+function closeModal() {
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}
 
 
 
-        if (playerScore > compScore){
-            console.log(("You Win! " + playerScore + " to " + compScore))
-        }
-        else if (compScore > playerScore){
-            console.log(("You Lose! " + compScore + " to " + playerScore))
-        }
-        else if (compScore === playerScore){
-            console.log(("Tie! " + compScore + " to " + playerScore))
-        }
-        
-            
+
+
+
+function updateChoices(playerSelection, computerSelection) {
+    switch (playerSelection) {
+        case 'rock':
+            userInput.innerHTML = '<img src="img/rock.svg" alt="Rock">';
+            break
+        case 'paper':
+            userInput.innerHTML = '<img src="img/scroll.svg" alt="scroll">';
+            break
+        case 'scissors':
+            userInput.innerHTML = '<img src="img/scissors.svg" alt="scissors">';
+            break
+    }
+
+    switch (computerSelection) {
+        case 'rock':
+            compInput.innerHTML = '<img src="img/rock.svg" alt="Rock">';
+            break
+        case 'paper':
+            compInput.innerHTML = '<img src="img/scroll.svg" alt="scroll">';
+            break
+        case 'paper':
+            compInput.innerHTML = '<img src="img/scissors.svg" alt="scissors">';
+            break
+    }
 
 
 }
 
-    
+function updateScore() {
+
+    if (roundWin === 'tie') {
+        scoreInfo.textContent = "It's a tie!"
+    } else if (roundWin === 'player') {
+        scoreInfo.textContent = 'You won!'
+    } else if (roundWin === 'computer') {
+        scoreInfo.textContent = 'You lost!'
+    }
+    userScoreP.textContent = `Player: ${playerScore}`;
+    computerScoreP.textContent = `Computer: ${computerScore}`;
+
+}
+
+
+
+
+function updScrMsg(winner, playerSelection, computerSelection) {
+    if (winner === 'player') {
+        scoreMessage.textContent = `${capitalizeFirstLetter(
+                playerSelection
+              )} beats ${computerSelection.toLowerCase()}`
+        return
+    }
+    if (winner === 'computer') {
+        scoreMessage.textContent = `${capitalizeFirstLetter(
+                playerSelection
+              )} beats ${computerSelection.toLowerCase()}`
+        return
+    }
+
+    scoreMessage.textContent = `${capitalizeFirstLetter(
+              playerSelection
+            )} ties  ${computerSelection.toLowerCase()}`
+}
+
 
 

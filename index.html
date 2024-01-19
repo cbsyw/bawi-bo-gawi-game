@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    
-</body>
-</html>
 
-<script src="scripts.js"></script>
+<body>
+
+    <header>
+        <div id="header">
+            <h1>rock paper scissors</h1>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="gameStation">
+
+            <div id="scoreMessage">Best of 5</div>
+            <div id="scoreInfo">Rock, Paper, Scissors, Shoot!</div>
+
+            <div class="firstColumn">
+                <div id="userInput"></div>
+                <div id="compInput"></div>
+            </div>
+
+            <div class="secondColumn">
+                <div id="userScore">Player:</div>
+                <div id="computerScore">Computer:</div>
+            </div>
+
+        </div>
+
+        <div class="userInputs">
+            <button class="button" id="rock"><img src="img/rock.svg" alt="rock"></button>
+            <button class="button" id="paper"><img src="img/scroll.svg" alt="paper"></button>
+            <button class="button" id="scissors"><img src="img/scissors.svg" alt="scissors"></button>
+        </div>
+
+    </main>
+
+    <footer>
+        <div id="footer">
+            <h4>
+                © 2024 cbsyw
+            </h4>
+        </div>
+    </footer>
+
+    <div class="modal" id="modal">
+        <p class="modal-title" id="endMessage"></p>
+        <button class="btn btn-restart" id="restartButton">Play again</button>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>

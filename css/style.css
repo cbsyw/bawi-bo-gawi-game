@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+    background-color: #242424;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#header{
+    text-align: center;
+    color: #A7A7F6;
+}
+
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;  
+    text-align: center;
+    color: #A7A7F6;
+ }
+
+ .gameStation{
+    display: flex;
+    width: 500px;
+    height: 350px;
+    background-color: black;
+    border-radius: 40px;
+    margin-top: 40px;
+ }
+
+
+ 
+main{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.userInputs{
+    margin: 20px;
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.userInputs img{
+    width: auto;
+    height: 70px;
+}    
+
+.computerScore{
+    display: flex;
+    background-color: black;
+    color: #A7A7F6;;
+    width: 100px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+
+}
+.userScore{
+    display: flex;
+    background-color: black;
+    color: #A7A7F6;;
+    width: 100px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.userScore p{
+    background-color: black;
+}
+.computerScore p{
+    background-color: black;
+}
+
+.roundScore{
+    display: flex;
+    background-color: black;
+    color: #A7A7F6;;
+    width: 100px;
+    height: 50px;
+
+    align-items: center;
+    justify-content: center;
+}
+#compInput{
+    display: flex;
+    background-color: black;
+    color: #A7A7F6;;
+    width: 100px;
+    height: 100px;
+
+    align-items: center;
+    justify-content: center;
+
+}
+#userInput{
+    display: flex;
+    background-color: black;
+    color: #A7A7F6;;
+    width: 100px;
+    height: 100px;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+#userInput img{
+    width: auto;
+    height: 70px;
+    background-color: black;
+    cursor:pointer;
+      
+}
+#compInput img{
+    width: auto;
+    height: 70px;
+    background-color: black;
+}
+
+.gameStation{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.firstColumn{
+    display: flex;
+    gap: 80px;
+    background-color: black;
+    justify-content: center;
+}
+
+.secondColumn{
+    display: flex;
+    gap: 80px;
+    background-color: black;
+    justify-content: center;
+
+}
+
+
+.button{
+    border:0;
+    background:transparent;
+    cursor: pointer;
+}
+
+
+
+    
+
+
+#scoreInfo{
+    color: #A7A7F6;
+    background-color: black;
+}
+#scoreMessage{
+    color: #A7A7F6;;
+    background-color: black;
+}
+
+#userScore{
+    color: #A7A7F6;;
+    background-color: black;
+}
+#computerScore{
+    color: #A7A7F6;;
+    background-color: black;
+}
+
+
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 150px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #242424;
+    text-align: center;
+    font-size: 30px;
+    user-select: none;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 300ms ease-in;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #A7A7F6
+  }
+  
+  .btn-restart {
+    padding: 10px 20px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+
+  .btn-restart{
+    
+  }
+
+  
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+  }
+  
+  .overlay.active {
+    display: block;
+  }
+
+
+
+/* cute button */
+.btn-restart {
+  background-color: #A7A7F6;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 13px 23px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.btn-restart:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.btn-restart:active {
+  background-color: #A7A7F6;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.btn-restart:disabled {
+  border-color: #A7A7F6;
+  color: #A7A7F6;
+  cursor: not-allowed;
+  opacity: 1;
+}
